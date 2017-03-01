@@ -1,0 +1,128 @@
+<div id="contents" class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    
+    <h3>分析結果が出ました！</h3>
+    <p>
+      あなたの性格を『 Personality: 個性 』『 Values: 価値観 』『 Needs: 欲求 』の３つの分野に分けて表示しています。
+      実際にはもう少し内訳が細分化され、数値も細かい分析データが出力されています。
+      ご興味のある方は以下のテキストデータ（JSON形式）もご参照ください。
+    </p>
+    
+    <div id="json_data" class="form-group">
+      <label for="comment">分析結果データ（JSON形式）</label>
+      <textarea class="form-control" rows="5">
+        <%= @insight_data %>
+      </textarea>
+    </div>
+    
+    <div class="title-bar">
+      <h3>Personality: 個性</h3>
+    </div>
+    <canvas id="chart_personality"></canvas>
+    
+    <div class="title-bar">
+      <h3>Values: 価値観</h3>
+    </div>
+    <canvas id="chart_values"></canvas>
+    
+    <div class="title-bar">
+      <h3>Needs: 欲求</h3>
+    </div>
+    <canvas id="chart_needs"></canvas>
+    
+  </div>
+</div>
+
+<script>
+    var ctx = document.getElementById('chart_personality').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: ['知的好奇心','誠実性','外向性','協調性','感情起伏'],
+        datasets: [{
+          label: 'personality',
+          data: [
+              <%= @insight_personality["big5_openness"] %>,
+              <%= @insight_personality["big5_conscientiousness"] %>,
+              <%= @insight_personality["big5_extraversion"] %>,
+              <%= @insight_personality["big5_agreeableness"] %>,
+              <%= @insight_personality["big5_neuroticism"] %>
+        　　],
+          backgroundColor: "rgba(133,186,231,0.4)"
+        }]
+      },
+      options: {
+        scale: {
+            ticks: {
+                beginAtZero: true,
+                max: 100
+            }
+        }
+      }
+    });
+</script>
+<script>
+    var ctx = document.getElementById('chart_needs').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['挑戦','親密','探求','興奮','調和','理想','自由','愛情','実用','表現','安定','仕組'],
+        datasets: [{
+          label: 'Needs',
+          data: [
+              <%= @insight_needs["need_challenge"] %>,
+              <%= @insight_needs["need_closeness"] %>,
+              <%= @insight_needs["need_curiosity"] %>,
+              <%= @insight_needs["need_excitement"] %>,
+              <%= @insight_needs["need_harmony"] %>,
+              <%= @insight_needs["need_ideal"] %>,
+              <%= @insight_needs["need_liberty"] %>,
+              <%= @insight_needs["need_love"] %>,
+              <%= @insight_needs["need_practicality"] %>,
+              <%= @insight_needs["need_self_expression"] %>,
+              <%= @insight_needs["need_stability"] %>,
+              <%= @insight_needs["need_structure"] %>
+        　　],
+          backgroundColor: "rgba(133,186,231,0.4)"
+        }]
+      },
+      options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }]
+        }
+      }
+    });
+</script>
+<script>
+    var ctx = document.getElementById('chart_values').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'polarArea',
+      data: {
+        labels: ['保守主義','革新主義','快楽主義','成長主義','超越主義'],
+        datasets: [{
+          label: 'Needs',
+          data: [
+              <%= @insight_values["value_conservation"] %>,
+              <%= @insight_values["value_openness_to_change"] %>,
+              <%= @insight_values["value_hedonism"] %>,
+              <%= @insight_values["value_self_enhancement"] %>,
+              <%= @insight_values["value_self_transcendence"] %>
+        　　],
+          backgroundColor: ["rgba(245,214,110,0.6)","rgba(215,129,137,0.6)","rgba(206,171,206,0.6)","rgba(196,211,109,0.6)","rgba(227,168,107,0.6)"]
+        }]
+      },
+      options: {
+        scale: {
+            ticks: {
+                beginAtZero: true,
+                max: 100
+            }
+        }
+      }
+    });
+</script>

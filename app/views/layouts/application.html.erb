@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ADECCO</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" %>
+  <%= stylesheet_link_tag "common.css" %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js" %>
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
+</head>
+<body>
+  <div class="conteiner-fulid">
+    <div id="header" class="row">
+      Adecco Personality Insights
+    </div>      
+    
+    <%= yield %>
+    
+    <div id="footer" class="row">
+      Rei Suzuki @ Adecco
+    </div>
+  </div>
+</body>
+</html>

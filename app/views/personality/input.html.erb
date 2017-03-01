@@ -1,0 +1,49 @@
+<div id="contents" class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    
+    <h3>以下の質問に回答してください</h3>
+    <p>
+      正確な分析を行うためには各回答で800文字以上、<strong>合計で2400文字以上</strong>が必要となります。
+      前述のとおり、回答の内容自体を分析しているわけではないので、なにか書いてあれば結果は表示されます。
+      時間がない場合はご自身が過去に書いた文章などを利用して試してみてください。
+      また、回答の内容はどこかに送信されたり保存されたりはしないのでご安心ください。
+    </p>
+    
+    <!-- バリデーションエラー表示 -->
+    <% if @personality.errors.any? %>
+      <div id="error-msg">
+        <h4>入力された内容にエラーがあります</h4>
+        <ul>
+        <% @personality.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <%= form_for @personality,url:input_path do |f| %>
+    
+    <div class="form-group">
+      
+      <%= f.label :ans1, "質問１:" %>
+      あなたは今までどんな仕事をしてきましたか？またその仕事で得られたことは何ですか？
+      <%= f.text_area :ans1,class:"form-control",rows:"12",placeholder:"800文字以上で回答してください" %>
+      
+      <%= f.label :ans2, "質問２:" %>
+      あなたは今どんな仕事をしていますか？その仕事でやりがいを感じていること、または苦労していることは何ですか？
+      <%= f.text_area :ans2,class:"form-control",rows:"12",placeholder:"800文字以上で回答してください" %>
+      
+      <%= f.label :ans3, "質問３:" %>
+      あなたは今後どんな仕事をしたいですか？また、その仕事を選ぶうえで最も重要なことは何ですか？
+      <%= f.text_area :ans3,class:"form-control",rows:"12",placeholder:"800文字以上で回答してください" %>
+      
+      <div class="actions">
+        <%= f.submit "分析する",:class=>"btn btn-success" %>
+        <a class="btn btn-default" href="/start">戻る</a>
+      </div>
+      
+    </div>
+    <% end %>
+    
+  </div>
+</div>

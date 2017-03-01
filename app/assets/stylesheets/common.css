@@ -1,0 +1,52 @@
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+textarea {
+    resize: none;
+}
+
+#cover {
+    height: 280px;
+    margin-bottom: 24px;
+    background-color: #DDD;
+    background-image: url("watch.jpg");
+    background-size: cover;
+    color: #FFF;
+}
+
+#start-btn {
+    width: 180px;
+    margin: 36px 0;
+    font-size: 18px;
+}
+
+#contents {
+    background-color: #FFF;
+}
+#contents p {
+    margin-bottom: 36px;
+}
+#contents textarea {
+    margin-bottom: 36px;
+}
+
+.actions {
+    text-align: center;
+}
+.actions .btn {
+    width: 120px;
+}
+
+.title-bar {
+    margin-bottom: 12px;
+    border-bottom: 1px solid #DDD;
+}
+
+#error-msg {
+    margin-bottom: 12px;
+    padding: 12px 18px;
+    color: #FFF;
+    background-color: #D78189;
+}
